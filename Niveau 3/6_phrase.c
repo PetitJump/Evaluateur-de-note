@@ -42,21 +42,25 @@ int voyelles(char phrase[]){
 char* mot_le_plus_long(char phrase[]){ // Fonction buger
     static char mot_long[101] = "";
     char mot[101] = "";
+    int taille_mot = 0;
 
-    phrase[strlen(phrase)] = ' ';
+    phrase[strlen(phrase)] = ' '; // On ajoute un espace a la fin (pour pouvoir reboucler a la fin)
 
     for(int i = 0; i < strlen(phrase); i += 1){
         if(phrase[i] != ' '){
-            mot[i] = phrase[i]; // On met le mot petit a petit
+            mot[taille_mot] = phrase[i]; // On met le mot petit a petit
+            taille_mot += 1;
         }
         else{
-            mot[i] = '\0'; // On ferme le mot
-            if(strlen(mot) > strlen(mot_long)){
-                char mot_long = mot;
+            mot[taille_mot] = '\0'; // On ferme le mot
+            if(strlen(mot) > strlen(mot_long)){ // Si le mot que l'on vient de prendre est plus grand que ceux d'avant
+                for(int j=0; j<strlen(mot); j+= 1){mot_long[j] = mot[j];};
+                mot_long[strlen(mot)] = '\0'; // On dit que c'est la fin du mot
             };
-            char mot[101] = "";
+            taille_mot = 0;
         };
     };
+    printf("\nLe mot le plus long est : %s", mot_long);
     return mot_long;
 }
 
