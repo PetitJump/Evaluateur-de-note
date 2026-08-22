@@ -26,11 +26,11 @@ int mots(char phrase[]){
 }
 
 int voyelles(char phrase[]){
-    char liste_voyelles[] = {'a', 'e', 'i', 'o', 'u', 'y'};
+    char liste_voyelles[] = {'a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'};
 
     int nombre = 0;
     for(int i = 0; i < strlen(phrase); i += 1){
-        for(int j = 0; j < 6; j += 1){
+        for(int j = 0; j < 12; j += 1){
             if(phrase[i] == liste_voyelles[j]){nombre += 1;};
         };
     };
@@ -39,14 +39,32 @@ int voyelles(char phrase[]){
     return nombre;
 }
 
-char* mot_le_plus_long(char phrase[]){
-    
+char* mot_le_plus_long(char phrase[]){ // Fonction buger
+    static char mot_long[101] = "";
+    char mot[101] = "";
+
+    phrase[strlen(phrase)] = ' ';
+
+    for(int i = 0; i < strlen(phrase); i += 1){
+        if(phrase[i] != ' '){
+            mot[i] = phrase[i]; // On met le mot petit a petit
+        }
+        else{
+            mot[i] = '\0'; // On ferme le mot
+            if(strlen(mot) > strlen(mot_long)){
+                char mot_long = mot;
+            };
+            char mot[101] = "";
+        };
+    };
+    return mot_long;
 }
 
 int main(void){
     char* phrase = demander_phrase();
     int nb_mots = mots(phrase);
     int nb_voyelles = voyelles(phrase);
+    char* mot_long = mot_le_plus_long(phrase); // Fonction buger
 
     printf("\n"); // Dernier saut de ligne
     return 0;
