@@ -39,7 +39,7 @@ int voyelles(char phrase[]){
     return nombre;
 }
 
-char* mot_le_plus_long(char phrase[]){ // Fonction buger
+char* mot_le_plus_long(char phrase[]){
     static char mot_long[101] = "";
     char mot[101] = "";
     int taille_mot = 0;
@@ -68,7 +68,7 @@ int main(void){
     char* phrase = demander_phrase();
     int nb_mots = mots(phrase);
     int nb_voyelles = voyelles(phrase);
-    char* mot_long = mot_le_plus_long(phrase); // Fonction buger
+    char* mot_long = mot_le_plus_long(phrase);
 
     printf("\n"); // Dernier saut de ligne
     return 0;
