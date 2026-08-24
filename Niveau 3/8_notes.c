@@ -7,7 +7,7 @@ int* prises_de_notes(int taille){
     int* notes = malloc(taille * sizeof(int));
 
     for(int i=0; i<taille; i++){
-        printf("\nNote %i : ", i);
+        printf("\nNote %i : ", (i+1));
         scanf("%i", &notes[i]);
     }
     return notes;
@@ -30,14 +30,14 @@ void moyennes(int taille, int* notes){
     for(int i=0; i<taille; i++){
         total += notes[i];
     }
-    int moyenne = total / taille;
-    printf("\nLa moyenne des notes : %i", moyenne);
+    float moyenne = (float)total / taille;
+    printf("\nLa moyenne des notes : %.2f", moyenne);
 
     int nb_audessus_moyenne = 0;
     for(int i=0; i<taille; i++){
-        if(notes[i] > moyenne){nb_audessus_moyenne += notes[i];}
+        if(notes[i] > moyenne){nb_audessus_moyenne++;}
     }
-    printf("\nNombres de notes au dessus de la moyenne : %i", nb_audessus_moyenne);
+    printf("\nNombres de notes au dessus de la moyenne : %i \n", nb_audessus_moyenne);
 }
 
 int main(void){
@@ -50,7 +50,7 @@ int main(void){
 
     min_max(taille, notes);
     moyennes(taille, notes);
-    
+
     free(notes);
     return 0;
 }
